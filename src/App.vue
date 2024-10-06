@@ -5,7 +5,6 @@
       <Post @sorting="sorting" :info="value" :key="i" v-for="(value, i) in post_sort" />
     </div>
   </div>
-  <h2>gela</h2>
 </template>
 
 <script>
