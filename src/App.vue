@@ -1,20 +1,30 @@
 <template>
-  <FancyButton @button-clicked="handleClick">
-    Click me!
-  </FancyButton>
+  <BaseLayout>
+    <!-- Slot content for the header -->
+         
+    <template v-slot:header>
+      <h1>header content</h1>
+    </template>
+
+    
+    <template v-slot:main>
+      <h1>main slot content</h1>
+    </template>
+
+
+    <!-- Default slot content -->
+    <p>This is the main content of the page.</p>
+
+    
+  </BaseLayout>
 </template>
 
 <script>
-import FancyButton from './FancyButton.vue';
+import BaseLayout from './components/child.vue';
 
 export default {
   components: {
-    FancyButton
-  },
-  methods: {
-    handleClick() {
-      alert('Button clicked!');
-    }
+    BaseLayout
   }
 }
 </script>
