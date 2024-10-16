@@ -1,6 +1,8 @@
 <template>
-  <!-- simple emit -->
-  <button @click="$emit('someEvent',12)">Click Me</button>
+ 
+    <div>
+        <slot></slot>
+    </div>
 </template>
 
 <script>
