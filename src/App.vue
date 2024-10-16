@@ -1,21 +1,22 @@
 <template>
   <BaseLayout>
-    <!-- Slot content for the header -->
-         
-    <template v-slot:header>
-      <h1>header content</h1>
+    <!-- Using v-slot with dynamic slot name -->
+
+   <template v-slot:[slot_name]>
+      <p>This is content for the dynamically named slot: "{{ slot_name }}"</p>
     </template>
 
-    
-    <template v-slot:main>
-      <h1>main slot content</h1>
-    </template>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae laborum est blanditiis esse voluptatem autem? Quis eum minus hic repudiandae laboriosam, ratione voluptatem magni, perferendis reprehenderit, vitae natus? Deserunt, iste?</p>
 
+  </BaseLayout>
 
-    <!-- Default slot content -->
-    <p>This is the main content of the page.</p>
-
-    
+  <BaseLayout>
+      <!-- Using shorthand # with dynamic slot name -->
+      <template #[slot_name]>
+        <p>This content also uses the dynamically named slot!</p>
+      </template>
+      
+      <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Repudiandae laborum est blanditiis esse voluptatem autem? Quis eum minus hic repudiandae laboriosam, ratione voluptatem magni, perferendis reprehenderit, vitae natus? Deserunt, iste?</p>
   </BaseLayout>
 </template>
 
@@ -25,6 +26,11 @@ import BaseLayout from './components/child.vue';
 export default {
   components: {
     BaseLayout
+  },
+  data() {
+    return {
+      slot_name: 'custom' // Dynamic slot name, can be changed
+    }
   }
 }
 </script>
