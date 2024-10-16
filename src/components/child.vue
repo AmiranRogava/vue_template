@@ -1,24 +1,29 @@
 <template>
     <div>
-      <!-- Dynamically named slot -->
-      <slot name="custom"></slot>
-  
-      <!-- Default Slot -->
-      <slot></slot>
+      <!-- Provide slot with props -->
+      <slot :text="text" :count="count">
+        
+      </slot>
     </div>
   </template>
   
   <script>
   export default {
-    name: 'BaseLayout'
+    name: 'MyComponent',
+    data() {
+      return {
+        text: 'Hello, world!',
+        count: 42
+      };
+    }
   }
   </script>
   
   <style scoped>
   div {
     padding: 20px;
-    border: 1px solid #ddd;
-    margin: 10px 0;
+    background-color: #f0f0f0;
+    border: 1px solid #ccc;
   }
   </style>
   
