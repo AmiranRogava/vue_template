@@ -1,11 +1,11 @@
 <template>
-  <FancyButton :onClick="handleClick">
+  <FancyButton @button-clicked="handleClick">
     Click me!
   </FancyButton>
 </template>
 
 <script>
-import FancyButton from './components/child.vue';
+import FancyButton from './FancyButton.vue';
 
 export default {
   components: {

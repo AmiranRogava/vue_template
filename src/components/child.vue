@@ -1,18 +1,12 @@
 <template>
-    <button class="fancy-btn" @click="onClick">
+    <button class="fancy-btn" @click="$emit('button-clicked')">
       <slot></slot>
     </button>
   </template>
   
   <script>
   export default {
-    name: 'FancyButton',
-    props: {
-      onClick: {
-        type: Function,
-        required: true
-      }
-    }
+    name: 'FancyButton'
   }
   </script>
   
