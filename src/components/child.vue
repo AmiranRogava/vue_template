@@ -1,9 +1,14 @@
 <template>
     <div>
-      <!-- Provide slot with props -->
-      <slot :text="text" :count="count">
+      <!-- Named scoped slots -->
+      <slot name="header" :text="headerText" :count="headerCount">
         
+
       </slot>
+  
+      <slot name="default" :text="defaultText" :count="defaultCount"></slot>
+  
+      <slot name="footer" :text="footerText" :count="footerCount"></slot>
     </div>
   </template>
   
@@ -12,8 +17,12 @@
     name: 'MyComponent',
     data() {
       return {
-        text: 'Hello, world!',
-        count: 42
+        headerText: 'Header Text',
+        headerCount: 10,
+        defaultText: 'Default Content',
+        defaultCount: 20,
+        footerText: 'Footer Text',
+        footerCount: 30,
       };
     }
   }
@@ -21,9 +30,9 @@
   
   <style scoped>
   div {
-    padding: 20px;
-    background-color: #f0f0f0;
     border: 1px solid #ccc;
+    padding: 20px;
+    margin: 10px 0;
   }
   </style>
   
