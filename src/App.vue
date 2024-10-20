@@ -1,14 +1,28 @@
 <template>
-  <div>
-    Mouse position is at: {{ x }}, {{ y }}
-  </div>
+  
+    <router-view v-slot="{Component}">
+        <nav>
+            <router-link :to="{path:'/'}">
+                home
+            </router-link>
 
+            <router-link :to="{path:'/about'}">
+                about
+            </router-link>
+
+        </nav>
+
+        <component :is="Component"></component>
+    </router-view>
 </template>
 
-<script setup>
-import { useMouse } from './composbles/mouse'
-const { x, y } = useMouse()
-
+<script >
+export default{
+    
+}
 
 </script>
 
+<style>
+
+</style>
