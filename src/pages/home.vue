@@ -40,6 +40,14 @@ export default{
 </script>
 
 
-<style>
+<style scoped>
+.products{
+  display: flex;
+  padding: 100px 50px;
+  gap: 50px;
+  flex-direction: row;
+
+  flex-wrap: wrap;
+}
 
 </style>

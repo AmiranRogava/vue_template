@@ -1,1 +1,14 @@
 /* @import './base.css'; */
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+h2, p, a{
+    width: fit-content;
+}
+#app{
+    background-color: black;
+}
