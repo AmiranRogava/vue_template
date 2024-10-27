@@ -11,7 +11,7 @@
 
 <script  >
 import Prod from "../components/product.vue"
-import axios from "axios"
+
 export default{
     components:{
       Prod
@@ -23,18 +23,15 @@ export default{
       products: []
     }
   },
- created(){
-    this.fetch_prods()
+  mounted(){
+    this.products = this.$store.getters.get_products
+
   },
   methods:{
     openInner(name){
       this.$router.push({ name: 'Inner', params: { name } });
-    },
-    async fetch_prods(){
-      const res = await axios.get("https://fakestoreapi.com/products")
-      console.log(res)
-      this.products = res.data
     }
+  
   }
 }
 </script>
