@@ -2,7 +2,9 @@
   <div class="product">
     <h2>{{ prod.title }}</h2>
     <p>{{ prod.description }}</p>
+    <button>add to cart</button>
     <img :src="prod.image" alt="" />
+   
   </div>
 </template>
 
@@ -22,18 +24,20 @@ export default{
 
 }
 .product:hover p,
-.product:hover h2 {
+.product:hover h2, 
+.product:hover button {
   opacity: 1;
-  cursor: pointer;
+  
 }
 
-p, h2 {
+p, h2 , button{
     opacity: 0; /* Set the default opacity to 0 */
     transition: opacity 0.3s;
     color: white;
   }
 
 p {
+    cursor:normal;
     position: absolute;
     bottom: 20px;
     padding: 30px 10px;
@@ -61,7 +65,15 @@ img{
     width: 100%;
     height: 100%;
     object-fit: cover;
-
     border-radius: 20px;
+  
+}
+button{
+    position: absolute;
+    bottom: 20px;
+    left:0;
+    right:0;
+    width:fit-content;
+    margin: auto;
 }
 </style>

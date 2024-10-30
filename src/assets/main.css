@@ -4,11 +4,23 @@
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
+    color: grey;
+    border: none;
+    outline: none;
 }
 
 h2, p, a{
     width: fit-content;
 }
+
+button {
+    background-color: purple;
+    padding: 10px 30px;
+    color: white;
+    cursor: pointer;
+}
+
 #app{
     background-color: black;
+    min-height: 100vh;
 }
