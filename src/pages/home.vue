@@ -1,11 +1,11 @@
 <template>
   <div>
     <h1>home</h1>
-    <button @click="openInner(name)">open</button>
+    <button @click="openInner(name)">open cart</button>
     <br>
-    <input type="text" v-model="query"  @input="search()" name="" id="">
+    <input type="text" v-model="query"  @input="search()" name="" id="" placeholder="search">
     <div class="products">
-      <Prod :prod="prod" v-for="prod, in filtered"></Prod>
+      <Prod :prod="prod" v-for="(prod, index) in filtered" :key="index" @add-to-cart="addToCart"></Prod>
     </div>
   </div>
 </template>
@@ -20,7 +20,7 @@ export default{
   ,
   data() {
     return {
-      name:"gela",
+      name:"cart",
       products: [],
       filtered: [],
       query: "",
@@ -38,6 +38,9 @@ export default{
     },
     search(){
       this.filtered = this.query.length != 0 ? this.products.filter(el => el.title.toLowerCase().includes(this.query.toLowerCase())) : this.products;
+    },
+    addToCart(product) {
+      this.$store.commit('addToCart', product); // Add product to cart in Vuex store
     }
 
   }

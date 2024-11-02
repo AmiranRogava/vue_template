@@ -24,7 +24,7 @@ export default{
             try{
                 const res = await this.$axios.get("https://fakestoreapi.com/products")
          
-                localStorage.setItem("products", JSON.stringify(res)  )
+                localge.setItem("products", JSON.stringify(res)  )
 
                 this.$store.commit("updateProds", res)
 

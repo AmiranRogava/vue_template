@@ -2,7 +2,7 @@
   <div class="product">
     <h2>{{ prod.title }}</h2>
     <p>{{ prod.description }}</p>
-    <button>add to cart</button>
+    <button @click="addToCart">add to cart</button>
     <img :src="prod.image" alt="" />
    
   </div>
@@ -12,6 +12,11 @@
 export default{
     props:{
         prod:Object
+    },
+    methods: {
+      addToCart() {
+        this.$store.commit('addToCart', this.prod);
+      }
     }
 }
 </script>

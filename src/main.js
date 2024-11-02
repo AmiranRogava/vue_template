@@ -13,5 +13,6 @@ app.config.globalProperties.$axios = axios
 app.use(router)
 app.use(store)
 
+store.dispatch('initializeCart');
 
 app.mount('#app')
