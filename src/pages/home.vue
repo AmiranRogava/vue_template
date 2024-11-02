@@ -1,11 +1,23 @@
 <template>
   <div>
     <h1>home</h1>
-    <button @click="openInner(name)">open cart</button>
-    <br>
-    <input type="text" v-model="query"  @input="search()" name="" id="" placeholder="search">
+    <!-- <button @click="openInner(name)">open product</button> -->
+    <br />
+    <input
+      type="text"
+      v-model="query"
+      @input="search()"
+      name=""
+      id=""
+      placeholder="search"
+    />
     <div class="products">
-      <Prod :prod="prod" v-for="(prod, index) in filtered" :key="index" @add-to-cart="addToCart"></Prod>
+      <Prod
+        :prod="prod"
+        v-for="(prod, index) in filtered"
+        :key="index"
+        @add-to-cart="addToCart"
+      ></Prod>
     </div>
   </div>
 </template>
@@ -24,7 +36,7 @@ export default{
       products: [],
       filtered: [],
       query: "",
-      
+
     }
   },
   mounted(){
@@ -62,7 +74,7 @@ input{
   width: 200px;
   background-color: purple;
   color: white;
-  margin: 50px auto;    
-  padding: 10px;  
+  margin: 50px auto;
+  padding: 10px;
 }
 </style>

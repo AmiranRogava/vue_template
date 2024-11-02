@@ -4,6 +4,7 @@
       <router-link :to="{path:'/'}"> home </router-link>
 
       <router-link :to="{path:'/about'}"> about </router-link>
+      <router-link :to="{path:'/cart'}"> cart </router-link>
     </nav>
 
     <component :is="Component"></component>
@@ -24,7 +25,7 @@ export default{
             try{
                 const res = await this.$axios.get("https://fakestoreapi.com/products")
          
-                localge.setItem("products", JSON.stringify(res)  )
+                localStorage.setItem("products", JSON.stringify(res)  )
 
                 this.$store.commit("updateProds", res)
 
@@ -32,7 +33,6 @@ export default{
                 console.error("failed to fetch data", err)
             }
    
-
         }
     }
 }

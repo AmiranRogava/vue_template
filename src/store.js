@@ -1,34 +1,54 @@
-import {createStore} from "vuex"
+import { createStore } from "vuex";
 
-const store =  createStore({
-    state:{
-        prods:[],
-        cart: JSON.parse(localStorage.getItem("cart")) || [] 
+
+const localStoragePlugin = (store) => {
+    store.subscribe((mutation, state) => {
+        if (
+            ['addToCart', 'removeItem', 'setCart'].includes(mutation.type)
+        ) {
+            localStorage.setItem('cart', JSON.stringify(state.cart));
+        }
+    });
+};
+
+
+const store = createStore({
+    state: {
+        prods: [],
+        cart: JSON.parse(localStorage.getItem("cart")) || {}
     },
-    mutations:{
-        addProd(state,prod){
-
+    mutations: {
+        addProd(state, prod) {
+            // Your logic for adding a product
         },
-        updateProds(state,prods){
-            state.prods = prods.data
+        updateProds(state, prods) {
+            state.prods = prods.data;
         },
         addToCart(state, prod) {
-            state.cart.push(prod);
-            localStorage.setItem("cart", JSON.stringify(state.cart));
+            if (state.cart[prod.id]) {
+                state.cart[prod.id].count += 1;
+            } else {
+                prod.count = 1;
+                state.cart[prod.id] = prod;
+            }
         },
         removeItem(state, itemId) {
-            state.cart = state.cart.filter(item => item.id !== itemId);
-          },
+            if (state.cart[itemId].count > 1){
+                state.cart[itemId].count -= 1
+                return
+            }
+            delete state.cart[itemId];
+        },
         setCart(state, cartItems) {
             state.cart = cartItems;
         }
     },
-    getters:{
-        get_products: (state) =>{
-            return state.prods
+    getters: {
+        get_products: (state) => {
+            return state.prods;
         },
-        get_cart: (state) =>{ 
-            return state.cart
+        get_cart: (state) => {
+            return state.cart;
         }
     },
     actions: {
@@ -38,11 +58,11 @@ const store =  createStore({
                 commit('setCart', cart);
             }
         }
-    }
+    },
+    plugins: [localStoragePlugin] // Register the plugin here
+});
 
 
 
-})
 
-
-export default store
+export default store;

@@ -1,17 +1,24 @@
 <template>
-  <div class="product">
-    <h2>{{ prod.title }}</h2>
-    <p>{{ prod.description }}</p>
-    <button @click="addToCart">add to cart</button>
-    <img :src="prod.image" alt="" />
-   
+  <div>
+    <div class="actions">
+        <slot></slot>
+    </div>
+  
+    <div class="product">
+      <h2>{{ prod.title }}</h2>
+      <p>{{ prod.description }}</p>
+      <button v-if="!cart" @click="addToCart">add to cart</button>
+
+      <img :src="prod.image" alt="" />
+    </div>
   </div>
 </template>
 
 <script>
 export default{
     props:{
-        prod:Object
+        prod:Object,
+        cart:Boolean
     },
     methods: {
       addToCart() {
@@ -29,10 +36,10 @@ export default{
 
 }
 .product:hover p,
-.product:hover h2, 
+.product:hover h2,
 .product:hover button {
   opacity: 1;
-  
+
 }
 
 p, h2 , button{
@@ -50,8 +57,8 @@ p {
     white-space: wrap;     /* Prevents text from wrapping to a new line */
     text-overflow: ellipsis; /* Adds '...' at the end of the text */
     height: 300px;
- 
-    
+
+
     transition:  opacity 0.3s;
 }
 h2{
@@ -71,7 +78,7 @@ img{
     height: 100%;
     object-fit: cover;
     border-radius: 20px;
-  
+
 }
 button{
     position: absolute;
@@ -81,4 +88,12 @@ button{
     width:fit-content;
     margin: auto;
 }
+
+.actions{
+  display: flex;
+  width: 100%;
+  gap: 20px;
+}
+
+
 </style>
