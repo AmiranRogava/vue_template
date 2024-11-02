@@ -32,6 +32,7 @@ export default{
 .product{
     max-width: 300px;
     position: relative;
+    height: 100%;
     overflow: hidden;
 
 }
