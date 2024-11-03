@@ -2,7 +2,7 @@ import { createWebHistory, createRouter } from "vue-router";
 
 import Home from "./pages/home.vue"
 import About from "./pages/about.vue"
-import Inner from "./pages/inner.vue"
+import Product from "./pages/product.vue"
 import EPAGE from "./pages/404.vue"
 import Cart from "./pages/cart.vue"
 
@@ -20,9 +20,9 @@ const router = createRouter({
             component: About
         },
         {
-            path: "/inner/:name",
-            name: "Inner",
-            component: Inner,
+            path: "/product/:id/:name",
+            name: "Product",
+            component: Product,
             props:true
         },
         {

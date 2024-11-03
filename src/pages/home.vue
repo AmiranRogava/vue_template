@@ -1,7 +1,7 @@
 <template>
   <div>
     <h1>home</h1>
-    <!-- <button @click="openInner(name)">open product</button> -->
+    <!-- <button @click="openProduct(name)">open product</button> -->
     <br />
     <input
       type="text"
@@ -16,6 +16,7 @@
         :prod="prod"
         v-for="(prod, index) in filtered"
         :key="index"
+        
         @add-to-cart="addToCart"
       ></Prod>
     </div>
@@ -45,8 +46,8 @@ export default{
 
   },
   methods:{
-    openInner(name){
-      this.$router.push({ name: 'Inner', params: { name } });
+    openProduct(name){
+      this.$router.push({ name: 'Product', params: { name } });
     },
     search(){
       this.filtered = this.query.length != 0 ? this.products.filter(el => el.title.toLowerCase().includes(this.query.toLowerCase())) : this.products;
@@ -54,7 +55,6 @@ export default{
     addToCart(product) {
       this.$store.commit('addToCart', product); // Add product to cart in Vuex store
     }
-
   }
 }
 </script>

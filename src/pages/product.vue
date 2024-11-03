@@ -14,14 +14,12 @@ export default {
     };
   },
   computed: {
-    productId() {
-      return this.$route.params.id;
+    prod_id() {
+      return this.$route.params.id
     },
   },
   mounted() {
-    this.product = this.$store.getters.get_cart.find(
-      (item) => item.id === this.productId
-    );
+    this.product = this.$store.getters.get_product(this.prod_id)
   },
 };
 </script>

@@ -1,18 +1,18 @@
 <template>
   <div>
-    <h1>{{ name }}</h1>
+    <h1>Shopping Cart</h1>
 
-    <div class="products" v-if="Object.keys(cart).length > 0">
-      <Prod :cart="true"
+    <div class="products" v-if="cart.length > 0">
+      <Prod 
         v-for="item in cart" 
         :key="item.id" 
         :prod="item" 
-        @click="viewProduct(item.id)">
- 
+        :cart="true"
+        
+      >
         <button class="del" @click.stop="deleteItem(item.id)">Delete</button>
-        <span>count: {{ item.count }}</span>
- 
-      
+        <button @click="increase(item)">Increase</button>
+        <span>Count: {{ item.count }}</span>
       </Prod>
     </div>
 
@@ -29,11 +29,6 @@ export default {
   components: {
     Prod,
   },
-  data() {
-    return {
-      name: null,
-    };
-  },
   computed: {
     cart() {
       // Retrieve cart data from the store and convert to an array
@@ -41,27 +36,15 @@ export default {
       return Object.values(cartData).filter(item => item !== null);
     },
   },
-  mounted() {
-    this.name = this.$route.params.name;
-  },
   methods: {
     deleteItem(itemId) {
       this.$store.commit("removeItem", itemId);
     },
-    viewProduct(productId) {
-      this.$router.push({ name: "Product", params: { id: productId } });
+    increase(item) {
+      
+      this.$store.commit('addToCart', item);
     },
-  },
-  watch: {
-    // Watch the cart computed property for changes
-    cart: {
-      handler(newCart) {
-        console.log("Cart updated:", newCart);
-        // Any additional logic when the cart updates can go here
-      },
-      deep: true, // Enable deep watching to track nested changes
-    },
-  },
+  }
 };
 </script>
 
@@ -73,9 +56,7 @@ export default {
   flex-wrap: wrap;
 }
 
-
-
-span , .del {
+span, .del, .del + button {
   width: fit-content;
   display: block;
   background-color: grey;
@@ -84,8 +65,12 @@ span , .del {
   padding: 5px 10px;
   margin-bottom: 20px;
 }
-.del{
+.del {
   background-color: red;
+  color: white;
+}
+.del + button {
+  background-color: blueviolet;
   color: white;
 }
 </style>

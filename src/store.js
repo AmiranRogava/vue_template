@@ -25,6 +25,7 @@ const store = createStore({
             state.prods = prods.data;
         },
         addToCart(state, prod) {
+          
             if (state.cart[prod.id]) {
                 state.cart[prod.id].count += 1;
             } else {
@@ -49,6 +50,9 @@ const store = createStore({
         },
         get_cart: (state) => {
             return state.cart;
+        },
+        get_product:(state) => (prodId) => {
+            return state.cart[prodId]
         }
     },
     actions: {
