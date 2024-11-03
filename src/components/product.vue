@@ -11,7 +11,7 @@
       <div>
          <button v-if="!cart" @click="addToCart">add to cart</button>
 
-      <button  @click="viewProduct(prod.title,prod.id)">view Product</button>
+      <button  @click="viewProduct(prod.title, prod.id)">view Product</button>
       </div>
      
       

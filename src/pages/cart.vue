@@ -10,7 +10,8 @@
         :cart="true"
         
       >
-        <button class="del" @click.stop="deleteItem(item.id)">Delete</button>
+      <button @click="remove(item)">remove</button>
+        <button class="del" @click.stop="decrease(item.id)">decrease</button>
         <button @click="increase(item)">Increase</button>
         <span>Count: {{ item.count }}</span>
       </Prod>
@@ -37,12 +38,16 @@ export default {
     },
   },
   methods: {
-    deleteItem(itemId) {
-      this.$store.commit("removeItem", itemId);
+    decrease(itemId) {
+      this.$store.commit("decrease", itemId);
     },
     increase(item) {
       
       this.$store.commit('addToCart', item);
+    },
+    remove(item) {
+      
+      this.$store.commit('removeItem', item.id);
     },
   }
 };
@@ -66,7 +71,7 @@ span, .del, .del + button {
   margin-bottom: 20px;
 }
 .del {
-  background-color: red;
+  background-color: blueviolet;
   color: white;
 }
 .del + button {

@@ -4,7 +4,7 @@ import { createStore } from "vuex";
 const localStoragePlugin = (store) => {
     store.subscribe((mutation, state) => {
         if (
-            ['addToCart', 'removeItem', 'setCart'].includes(mutation.type)
+            ['addToCart',"removeItem", 'decrease', 'setCart'].includes(mutation.type)
         ) {
             localStorage.setItem('cart', JSON.stringify(state.cart));
         }
@@ -33,11 +33,14 @@ const store = createStore({
                 state.cart[prod.id] = prod;
             }
         },
-        removeItem(state, itemId) {
+        decrease(state, itemId) {
             if (state.cart[itemId].count > 1){
                 state.cart[itemId].count -= 1
                 return
             }
+            delete state.cart[itemId];
+        },
+        removeItem(state, itemId){
             delete state.cart[itemId];
         },
         setCart(state, cartItems) {
@@ -52,7 +55,8 @@ const store = createStore({
             return state.cart;
         },
         get_product:(state) => (prodId) => {
-            return state.cart[prodId]
+        
+            return state.prods.filter(el => el.id == prodId)[0] || {}
         }
     },
     actions: {
