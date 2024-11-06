@@ -62,11 +62,14 @@ export default{
 <style scoped>
 .products{
   display: flex;
-  padding: 100px 50px;
+  padding: 50px;
   gap: 50px;
   flex-direction: row;
 
   flex-wrap: wrap;
+}
+.products div{
+ min-width: 350px;
 }
 input{
   display: block;
