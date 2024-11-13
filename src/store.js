@@ -82,7 +82,7 @@ const store = createStore({
 
         // Get a specific product by ID
         get_product: (state) => (prodId) => {
-            return state.prods.find(el => el.id === prodId) || {};
+            return  state.prods[prodId-1]
         }
     },
     actions: {

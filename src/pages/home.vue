@@ -11,6 +11,15 @@
       id=""
       placeholder="search"
     />
+    <select v-model="category" @change="search">
+      <option value=""> all</option>
+
+      <option v-for="cat in categories" :key="cat" :value="cat">
+        {{ cat }}  
+      </option>
+
+    </select>
+
     <div class="products">
       <Prod
         :prod="prod"
@@ -38,19 +47,30 @@ export default{
       filtered: [],
       query: "",
 
+      category:"",
+      categories:[]
+
     }
   },
   mounted(){
     this.products = this.$store.getters.get_products
     this.filtered = this.products
-
+    this.categories = [...new Set(this.products.map(p => p.category))]
   },
   methods:{
     openProduct(name){
       this.$router.push({ name: 'Product', params: { name } });
     },
     search(){
-      this.filtered = this.query.length != 0 ? this.products.filter(el => el.title.toLowerCase().includes(this.query.toLowerCase())) : this.products;
+      this.filtered = this.products.filter(el => {
+
+        const mQuery = el.title.toLowerCase().includes(this.query.toLowerCase())
+        const mCat = this.category ? el.category === this.category : true
+        return mQuery && mCat
+
+      })
+
+    
     },
     addToCart(product) {
       this.$store.commit('addToCart', product); // Add product to cart in Vuex store
