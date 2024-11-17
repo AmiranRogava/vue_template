@@ -51,7 +51,7 @@ export default {
 
 <style scoped>
 .product {
-  max-width: 350px;
+  width: 100%;
   position: relative;
   height: 500px;
   overflow: hidden;
@@ -144,5 +144,13 @@ button {
   display: flex;
   width: 100%;
   gap: 20px;
+}
+@media screen and (max-width:600px) {
+  .product {
+    width: 100%;
+
+  }
+
+
 }
 </style>

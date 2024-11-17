@@ -82,14 +82,16 @@ export default{
 <style scoped>
 .products{
   display: flex;
+  max-width: 100%;
   padding: 50px;
-  gap: 50px;
   flex-direction: row;
-
   flex-wrap: wrap;
+  margin: 50px auto;
+  justify-content: space-between;
+  gap: 40px;
 }
 .products div{
- min-width: 350px;
+  width: calc(100% / 4 - 30px);
 }
 input{
   display: block;
@@ -99,5 +101,24 @@ input{
   color: white;
   margin: 50px auto;
   padding: 10px;
+}
+@media screen and (max-width:1200px) {
+  .products div{
+    width: calc(100% / 3 - 30px);
+  }
+}
+@media screen and (max-width:900px) {
+  .products div{
+    width: calc(100% / 2 - 20px);
+  }
+}
+
+@media screen and (max-width:600px) {
+  .products div{
+    width: 100%;
+
+  }
+
+
 }
 </style>
