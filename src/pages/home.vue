@@ -11,7 +11,7 @@
       id=""
       placeholder="search"
     />
-    <select v-model="category" @change="search">
+    <select v-model="category" @change="search" class="category">
       <option value=""> all</option>
 
       <option v-for="cat in categories" :key="cat" :value="cat">
@@ -46,10 +46,8 @@ export default{
       products: [],
       filtered: [],
       query: "",
-
       category:"",
       categories:[]
-
     }
   },
   mounted(){
@@ -68,9 +66,7 @@ export default{
         const mCat = this.category ? el.category === this.category : true
         return mQuery && mCat
 
-      })
-
-    
+      }) 
     },
     addToCart(product) {
       this.$store.commit('addToCart', product); // Add product to cart in Vuex store
@@ -86,7 +82,7 @@ export default{
   padding: 50px;
   flex-direction: row;
   flex-wrap: wrap;
-  margin: 50px auto;
+  margin: 0 auto;
   justify-content: space-between;
   gap: 40px;
 }
@@ -99,9 +95,40 @@ input{
   width: 200px;
   background-color: purple;
   color: white;
-  margin: 50px auto;
+  margin: 10px auto;
   padding: 10px;
+  border-radius: 8px;
 }
+input:hover{
+  background-color:#b300b3;
+}
+input::placeholder {
+  color: #cccccc;
+}
+
+input:focus::placeholder {
+  opacity: 0.4;
+}
+
+.category {
+  width: 200px;
+  height: 20px;
+  display: block;
+  margin: 10px auto;
+  border-radius: 8px;
+  background-color: #800080;
+  cursor: pointer;
+  padding: 0 5px;
+}
+.category:hover {
+  background-color:#b300b3;
+}
+.category option {
+  padding: 10px;
+  background-color: purple;
+}
+
+
 @media screen and (max-width:1200px) {
   .products div{
     width: calc(100% / 3 - 30px);
@@ -116,9 +143,6 @@ input{
 @media screen and (max-width:600px) {
   .products div{
     width: 100%;
-
   }
-
-
 }
 </style>

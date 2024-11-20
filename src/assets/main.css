@@ -4,23 +4,59 @@
     padding: 0;
     box-sizing: border-box;
     text-decoration: none;
-    color: grey;
+    color: #cccccc;
     border: none;
     outline: none;
+    font-family:'Times New Roman';
 }
 
-h2, p, a{
+h1, h2, p, a{
     width: fit-content;
+    color: #fff;
 }
-
+h1{
+    padding: 10px 50px;
+  }
+a:hover {
+  color: #ffffffc3;
+}
 button {
-    background-color: purple;
+    background-color: #800080;
     padding: 10px 30px;
     color: white;
     cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
 }
-
+button:hover {
+  background-color: #b300b3;
+  transform: scale(1.05);
+}
+button:active {
+    transform: scale(0.98);
+  }
 #app{
-    background-color: black;
+    background-color: #2e002e;;
     min-height: 100vh;
 }
+::-webkit-scrollbar {
+    width: 10px;
+}
+::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    background-color: purple;
+}
+::-webkit-scrollbar-track {
+    background-color: #2e002e;
+}
+/* 
+Primary Purple: #800080
+
+Dark Background: #2e002e (deep dark purple for the background)
+
+Text - Light Gray: #cccccc (for readable text on dark backgrounds)
+
+Text - Highlighted White: #ffffff (for headings or important text)
+
+Accent Purple (Hover/Focus): #b300b3
+
+Secondary Accent (Soft Glow Effect): #4d004d */

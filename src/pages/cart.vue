@@ -63,8 +63,8 @@ export default {
 .cart>div:first-child {
   display: flex;
   justify-content: space-between;
-  height: 50px;
-  padding: 50px;
+  height: fit-content;
+  padding: 20px 50px;
 }
 
 .cart>div:first-child P {
@@ -81,6 +81,7 @@ export default {
   padding: 50px;
   gap: 50px;
   flex-wrap: wrap;
+  
 }
 
 .products span,
@@ -107,7 +108,7 @@ export default {
 }
 
 .products button+button+button {
-  background-color: blueviolet;
+  background-color: rgba(0, 255, 0, 0.84);
   color: white;
 }
 </style>

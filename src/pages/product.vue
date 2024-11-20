@@ -26,6 +26,7 @@ export default {
 
 <style scoped>
 /* Product Component Styles */
+
 .product-detail {
   max-width: 600px;
   margin: auto;
@@ -36,14 +37,18 @@ export default {
   width: 100%;
   height: auto;
   border-radius: 20px;
+  margin-bottom: 20px;
 }
 
 .product-detail h1 {
   font-size: 32px;
   margin-bottom: 20px;
+  padding:0;
+
 }
 
 .product-detail p {
   font-size: 18px;
+  color: #cccccc;
 }
 </style>
