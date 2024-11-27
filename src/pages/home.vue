@@ -17,10 +17,21 @@
       <option v-for="cat in categories" :key="cat" :value="cat">
         {{ cat }}  
       </option>
-
     </select>
 
-    <div class="products">
+    <div v-for="(products, category) in grouped" :key="category">
+      <h2>{{ category }}</h2>
+      <div class="products">
+        <Prod
+          :prod="prod"
+          v-for="(prod, index) in products"
+          :key="index"
+          @add-to-cart="addToCart"
+        ></Prod>
+      </div>
+    </div>
+    
+    <!-- <div class="products">
       <Prod
         :prod="prod"
         v-for="(prod, index) in filtered"
@@ -28,7 +39,8 @@
         
         @add-to-cart="addToCart"
       ></Prod>
-    </div>
+    </div> -->
+    
   </div>
 </template>
 
@@ -47,13 +59,15 @@ export default{
       filtered: [],
       query: "",
       category:"",
-      categories:[]
+      categories:[],
+      grouped: {},
     }
   },
   mounted(){
     this.products = this.$store.getters.get_products
     this.filtered = this.products
     this.categories = [...new Set(this.products.map(p => p.category))]
+    this.categorize();
   },
   methods:{
     openProduct(name){
@@ -69,14 +83,19 @@ export default{
       }) 
     },
     addToCart(product) {
-      this.$store.commit('addToCart', product); // Add product to cart in Vuex store
-    }
+      this.$store.commit('addToCart', product);
+    },
+    categorize() {
+      this.categories.forEach((cat) => {
+        this.grouped[cat] = this.products.filter((el) => el.category === cat).slice(0, 4);
+      });
+    },
   }
 }
 </script>
 
 <style scoped>
-.products{
+.products, section{
   display: flex;
   max-width: 100%;
   padding: 50px;
@@ -86,7 +105,7 @@ export default{
   justify-content: space-between;
   gap: 40px;
 }
-.products div{
+.products div, section div{
   width: calc(100% / 4 - 30px);
 }
 input{
@@ -127,7 +146,9 @@ input:focus::placeholder {
   padding: 10px;
   background-color: purple;
 }
-
+h2{
+  padding: 0 50px ;
+}
 
 @media screen and (max-width:1200px) {
   .products div{

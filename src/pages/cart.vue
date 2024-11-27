@@ -16,7 +16,7 @@
 
 
   </div>
-  <div v-else>
+  <div v-else class="empty">
     <p>Your cart is empty.</p>
   </div>
 </template>
@@ -75,15 +75,19 @@ export default {
 .cart>div:first-child p span {
   color: red;
 }
-
-.products {
+.products{
   display: flex;
+  max-width: 100%;
   padding: 50px;
-  gap: 50px;
+  flex-direction: row;
   flex-wrap: wrap;
-  
+  margin: 0 auto;
+  justify-content: space-between;
+  gap: 40px;
 }
-
+.products div{
+  width: calc(100% / 4 - 30px);
+}
 .products span,
 .products button {
   width: fit-content;
@@ -91,8 +95,7 @@ export default {
   background-color: grey;
   color: lime;
   border-radius: 10px;
-  padding: 5px 10px;
-  margin-bottom: 20px;
+  padding: 5px 5px;
 }
 
 .products button:first-child {
@@ -110,5 +113,24 @@ export default {
 .products button+button+button {
   background-color: rgba(0, 255, 0, 0.84);
   color: white;
+}
+@media screen and (max-width:1200px) {
+  .products div{
+    width: calc(100% / 3 - 30px);
+  }
+}
+@media screen and (max-width:900px) {
+  .products div{
+    width: calc(100% / 2 - 20px);
+  }
+}
+
+@media screen and (max-width:600px) {
+  .products div{
+    width: 100%;
+  }
+}
+.empty {
+  padding: 20px 50px;
 }
 </style>

@@ -130,8 +130,12 @@ button {
 }
 .actions {
   display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   width: 100%;
-  gap: 20px;
+  height: 50px;
+  margin-bottom: 20px;
+
 }
 @media screen and (max-width:600px) {
   .product {
